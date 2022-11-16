@@ -12,9 +12,8 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = (props) => {
   const { menutype } = props;
-  const [active, setActive] = useState<string | null>('null');
-    console.log(active)
-    console.log(active ===null)
+  const [active, setActive] = useState<string | null>(null);
+
   return (
     <>
       {menutype === "/signpage" ? (
@@ -22,7 +21,7 @@ const Menu: React.FC<MenuProps> = (props) => {
           <MenuCss className="h-100 fdc justify-content-between">
             <div className="topBtn fdc">
               {menuData2.map((ele, idx) => (
-                <button key={idx} className="menuBtn d-flex">
+                <button key={idx} className="menuBtn d-flex" onClick={()=>{setActive(ele.title)}}>
                   <img src={ele.icon} alt="" className="icon" />
                   <p className="title">{ele.title}</p>
                   {(ele.title === "核取方塊" || ele.title === "選擇鈕") && (
@@ -32,7 +31,7 @@ const Menu: React.FC<MenuProps> = (props) => {
               ))}
             </div>
           </MenuCss>
-        ) : <SignMenu />
+        ) : <SignMenu active={active} setActive={setActive}/>
       ) : (
         <MenuCss className="h-100 fdc justify-content-between">
           <div className="topBtn fdc">

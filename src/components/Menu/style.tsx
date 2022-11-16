@@ -76,7 +76,30 @@ export const SignMenuCss = styled.div`
     }
     .func{
         background-color:var(--lite-gray);
-        padding:13px 24px;
-        
+        padding:23px 39px;
+        width:202px;
     }
+
+    .text{
+        width:124px;
+        font-size:12px;
+        color: var(--dark-gray);
+        margin-bottom:21px;
+    }
+    .files{
+        row-gap:24px;
+        margin-top:21px;
+    }
+    .file{
+        width:124px;
+        height:142px;
+        background-color:white;
+    }
+    .fileText{
+        width:124px;
+        font-size:12px;
+        margin-top:4px;
+        color:var(--lite-black);
+    }
+
 `
