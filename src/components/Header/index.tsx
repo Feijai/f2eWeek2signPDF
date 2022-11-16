@@ -6,6 +6,7 @@ import logo from "../../assets/logo_dottedsign.png";
 import bellIn from '../../assets/icon_notice-1.png'
 import user from '../../assets/user_icon_1_100 1.png'
 import search from '../../assets/icon_search.png'
+import { Link } from "react-router-dom";
 
 interface Header {
   state: boolean;
@@ -29,7 +30,7 @@ const Header: React.FC<Header> = (props) => {
             <img src={menuClose} alt="" className="w-100 h-100" />
           )}
         </button>
-        <img src={logo} alt="" className="logo" />
+        <Link to={"./"}><img src={logo} alt="" className="logo" /></Link>
       </div>
       <div>
         <img src={search} alt="" />

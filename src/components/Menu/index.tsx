@@ -4,7 +4,7 @@ import { menuData, menuData2 } from "./menuData";
 import Pro from "./Pro";
 import phone from "../../assets/icon_smartphone.png";
 import statesGreen from "../../assets/states_green.png";
-import SignMenu from './SignMenu'
+import SignMenu from "./SignMenu";
 
 interface MenuProps {
   menutype: string;
@@ -14,6 +14,10 @@ const Menu: React.FC<MenuProps> = (props) => {
   const { menutype } = props;
   const [active, setActive] = useState<string | null>(null);
 
+  const handleClick = (title: string) => {
+    active !== title ? setActive(title) : setActive(null);
+  };
+
   return (
     <>
       {menutype === "/signpage" ? (
@@ -21,7 +25,13 @@ const Menu: React.FC<MenuProps> = (props) => {
           <MenuCss className="h-100 fdc justify-content-between">
             <div className="topBtn fdc">
               {menuData2.map((ele, idx) => (
-                <button key={idx} className="menuBtn d-flex" onClick={()=>{setActive(ele.title)}}>
+                <button
+                  key={idx}
+                  className="menuBtn d-flex"
+                  onClick={() => {
+                    handleClick(ele.title);
+                  }}
+                >
                   <img src={ele.icon} alt="" className="icon" />
                   <p className="title">{ele.title}</p>
                   {(ele.title === "核取方塊" || ele.title === "選擇鈕") && (
@@ -31,7 +41,9 @@ const Menu: React.FC<MenuProps> = (props) => {
               ))}
             </div>
           </MenuCss>
-        ) : <SignMenu active={active} setActive={setActive}/>
+        ) : (
+          <SignMenu active={active} handleClick={handleClick} />
+        )
       ) : (
         <MenuCss className="h-100 fdc justify-content-between">
           <div className="topBtn fdc">

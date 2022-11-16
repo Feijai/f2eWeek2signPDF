@@ -4,16 +4,16 @@ import { menuData2 } from "./menuData";
 
 interface SignMenuProps {
   active: string;
-  setActive: React.Dispatch<React.SetStateAction<string | null>>
+  handleClick: Function
 }
 
 const SignMenu: React.FC<SignMenuProps> = (props) => {
-  const { active, setActive } = props
+  const { active, handleClick } = props
   return (
     <SignMenuCss className="d-flex">
       <div className="icons fdc">
         {menuData2.map((ele, idx) => (
-          <button key={idx} onClick={() => setActive(ele.title)}>
+          <button key={idx} onClick={()=>handleClick(ele.title)}>
             {active === ele.title ?
               <img src={ele.active} alt="" className="icon" /> :
               <img src={ele.icon} alt="" className="icon" />}

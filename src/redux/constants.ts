@@ -1,1 +1,2 @@
-export const MENU_ACTION ='MENU_ACTION'
+export const MENU_ACTION = 'MENU_ACTION'
+export const PDF_UPLOAD_ACTION = "PDF_UPLOAD_ACTION"

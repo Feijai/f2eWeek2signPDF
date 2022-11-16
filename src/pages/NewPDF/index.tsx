@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { NewPDFCss } from "./style";
 import cloud from "../../assets/icon_cloud.png";
+import rectangle from "../../assets/Rectangle.gif";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import { useNavigate } from "react-router-dom";
 
-export default function NewPDF() {
+interface NewPDFProps {
+  uploadPdf: Function;
+}
+
+const NewPDF: React.FC<NewPDFProps> = (props) => {
+  const { uploadPdf } = props;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [now, setNow] = useState(0);
+  const navigate = useNavigate();
+
   const handleChange = (files: any) => {
-    // if (files[0].size < 10 * 1024 * 1024) {
-    //   state.files.push(files[0]);
-    //   setState({ ...state });
-    // } else {
-    //   snackActions.error("圖片超過上傳限制");
-    // }
-    console.log(files);
+    uploadPdf(files[0]);
+    setLoading(true);
+    setTimeout(() => {
+      setNow(100);
+      setTimeout(() => {
+        navigate("/signpage");
+      }, 500);
+    }, 2000);
   };
   return (
     <NewPDFCss>
@@ -22,7 +35,7 @@ export default function NewPDF() {
           onChange={(value) => {
             handleChange(value.target.files);
           }}
-          accept="image/*"
+          accept="image/pdf"
           style={{
             position: "absolute",
             margin: "0",
@@ -34,12 +47,22 @@ export default function NewPDF() {
             cursor: "pointer",
           }}
         />
-        <div className="fdc align-items-center">
-          <img src={cloud} alt="" className="cloud" />
-          <p className="text fontBold">將檔案拖放或點擊打開</p>
-        </div>
+        {loading ? (
+          <div className="fdc align-items-center">
+            <img src={rectangle} alt="" className="rectangle" />
+            <p className="text fontBold">upload...</p>
+            <ProgressBar animated now={now} label={`${now}%`} />
+          </div>
+        ) : (
+          <div className="fdc align-items-center">
+            <img src={cloud} alt="" className="cloud" />
+            <p className="text fontBold">將檔案拖放或點擊打開</p>
+          </div>
+        )}
       </div>
-      <p className="bottomText">支援上傳PDF,JPG,Png等格式</p>
+      <p className="bottomText text-center">支援上傳 PDF, JPG, PNG 等格式</p>
     </NewPDFCss>
   );
-}
+};
+
+export default NewPDF;
