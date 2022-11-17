@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PDFViewerCss = styled.div`
+margin-top:21px;
   /* .viewerContainer {
     overflow: auto;
     width: 100%;
@@ -10,67 +11,17 @@ export const PDFViewerCss = styled.div`
     right: 0;
   } */
 
-  .page {
-    box-sizing: content-box;
-    margin: 0 auto;
-    box-sizing: content-box;
-    margin: 5px auto;
-    padding: 5px;
-    box-shadow: 0px 2px 3px 1px rgb(6 6 6 / 40%);
+  .page{
+    width: 100%!important;;
+    height:142px!important;
+    margin-bottom:44px;
   }
   .active {
     border: 1px solid #f1c343;
   }
 
-  .toolBus {
-    height: 3rem;
-    background-color: antiquewhite;
-    line-height: 30px;
-    position: fixed;
-    width: 100%;
-    flex-direction: row;
-    z-index: 1;
-  }
-
-  .toolBus .pagination {
-    width: 400px;
-    float: left;
-    margin: auto;
-  }
-
-  input {
-    width: 100px;
-    margin: 0 10px;
-  }
-
-  .selection {
-    width: 300px;
-    float: left;
-  }
-
-  .otherViewer {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: block;
-    margin: auto;
-  }
-
-  .otherViewer .page {
-    direction: ltr;
-    width: 816px;
-    height: 1056px;
-    margin: 1px auto -8px auto;
-    position: relative;
-    overflow: visible;
-    border: 9px solid transparent;
-    background-clip: content-box;
-  }
-
-  .cover-fit{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .canvasWrapper,canvas{
+    width:100%!important;
+    height:142px!important;
   }
 `;

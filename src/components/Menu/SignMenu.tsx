@@ -10,7 +10,7 @@ interface SignMenuProps {
 }
 
 const SignMenu: React.FC<SignMenuProps> = (props) => {
-  const { active, handleClick, pdf } = props
+  const { active, handleClick,pdf } = props
   return (
     <SignMenuCss className="d-flex">
       <div className="icons fdc">
@@ -24,7 +24,8 @@ const SignMenu: React.FC<SignMenuProps> = (props) => {
         ))}
       </div>
       <div className="func">
-        <PDFViewer pdf={pdf} />
+        <p className="text text-center">文件</p>
+        <PDFViewer pdf={pdf}/>
       </div>
     </SignMenuCss>
   );

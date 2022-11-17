@@ -21,7 +21,7 @@ const PDFViewer = (props: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const eventBusRef = useRef<any>(new pdfjsViewer.EventBus());
   const linkServiceRef = useRef<any>();
-  const DEFAULT_SCALE_VALUE = "page-width";
+  const DEFAULT_SCALE_VALUE = "page-fit";
 
   // canvas event
   // useHandleCanvasEvent(props, pdfRef);
@@ -78,8 +78,8 @@ const PDFViewer = (props: any) => {
 
   return (
     <PDFViewerCss className="position-relative w-100 h-100">
-      <div className="viewerContainer position-absolute" ref={containerRef}>
-        <div id="pdf-list" ref={pdfRef} />
+      <div className="viewerContainer position-absolute w-100" ref={containerRef}>
+        <div id="pdf-list w-100" ref={pdfRef} />
       </div>
     </PDFViewerCss>
   );
