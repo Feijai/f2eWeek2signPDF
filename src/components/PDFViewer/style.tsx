@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 export const PDFViewerCss = styled.div`
-  #viewerContainer {
-    position: absolute;
+  /* .viewerContainer {
     overflow: auto;
     width: 100%;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-  }
+  } */
 
   .page {
     box-sizing: content-box;
@@ -67,5 +66,11 @@ export const PDFViewerCss = styled.div`
     overflow: visible;
     border: 9px solid transparent;
     background-clip: content-box;
+  }
+
+  .cover-fit{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;

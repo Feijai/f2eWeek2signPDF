@@ -17,7 +17,7 @@ const App: React.FC<any> = (props) => {
     <>
       <Header open={getMenu} state={menuState} />
       <div className="d-flex midHiegh">
-        {menuState && <Menu menutype={location.pathname} />}
+        {menuState && <Menu menutype={location.pathname} pdf={pdf} />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/newpdf" element={<NewPDF uploadPdf={uploadPdf} />} />

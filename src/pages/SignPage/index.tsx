@@ -41,30 +41,30 @@ const SignPage: React.FC<SignPageProps> = (props) => {
   };
 
   useEffect(() => {
-    const $pdf = pdfRef.current;
+    if (pdf) {
+      const linkService = new pdfjsViewer.PDFLinkService({
+        eventBus: eventBusRef.current,
+      });
+      const pdfViewer = new pdfjsViewer.PDFViewer({
+        container: containerRef.current,
+        eventBus: eventBusRef.current,
+        linkService,
+        maxCanvasPixels: 5242880,
+        l10n: pdfjsViewer.NullL10n,
+        useOnlyCssZoom: USE_ONLY_CSS_ZOOM,
+        textLayerMode: TEXT_LAYER_MODE,
+      });
+      linkService.setViewer(pdfViewer);
+      pdfViewerRef.current = pdfViewer;
+      linkServiceRef.current = linkService;
+      // 設置初始缩放
+      pdfViewer.currentScaleValue = DEFAULT_SCALE_VALUE;
+      eventBusRef.current.on("pagesloaded", function () {
+        pdfViewerRef.current.currentScaleValue = DEFAULT_SCALE_VALUE;
+      });
 
-    const linkService = new pdfjsViewer.PDFLinkService({
-      eventBus: eventBusRef.current,
-    });
-    const pdfViewer = new pdfjsViewer.PDFViewer({
-      container: containerRef.current,
-      eventBus: eventBusRef.current,
-      linkService,
-      maxCanvasPixels: 5242880,
-      l10n: pdfjsViewer.NullL10n,
-      useOnlyCssZoom: USE_ONLY_CSS_ZOOM,
-      textLayerMode: TEXT_LAYER_MODE,
-    });
-    linkService.setViewer(pdfViewer);
-    pdfViewerRef.current = pdfViewer;
-    linkServiceRef.current = linkService;
-    // 設置初始缩放
-    pdfViewer.currentScaleValue = DEFAULT_SCALE_VALUE;
-    eventBusRef.current.on("pagesloaded", function () {
-      pdfViewerRef.current.currentScaleValue = DEFAULT_SCALE_VALUE;
-    });
-
-    initialViewer(pdf);
+      initialViewer(pdf);
+    }
   }, [pdf]);
   return (
     <SignPageCss className="position-relative w-100 h-100">

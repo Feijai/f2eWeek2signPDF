@@ -1,19 +1,21 @@
 import React from "react";
 import { SignMenuCss } from "./style";
 import { menuData2 } from "./menuData";
+import PDFViewer from '../PDFViewer'
 
 interface SignMenuProps {
   active: string;
   handleClick: Function
+  pdf: ArrayBuffer | null;
 }
 
 const SignMenu: React.FC<SignMenuProps> = (props) => {
-  const { active, handleClick } = props
+  const { active, handleClick, pdf } = props
   return (
     <SignMenuCss className="d-flex">
       <div className="icons fdc">
         {menuData2.map((ele, idx) => (
-          <button key={idx} onClick={()=>handleClick(ele.title)}>
+          <button key={idx} onClick={() => handleClick(ele.title)}>
             {active === ele.title ?
               <img src={ele.active} alt="" className="icon" /> :
               <img src={ele.icon} alt="" className="icon" />}
@@ -22,18 +24,7 @@ const SignMenu: React.FC<SignMenuProps> = (props) => {
         ))}
       </div>
       <div className="func">
-        <p className="text text-center">文件</p>
-        <div className="files fdc">
-          <div>
-            <div className="file"></div>
-            <p className=" text-center fileText">1</p>
-          </div>
-          <div>
-            <div className="file"></div>
-            <p className=" text-center fileText">2</p>
-          </div>
-        </div>
-
+        <PDFViewer pdf={pdf} />
       </div>
     </SignMenuCss>
   );

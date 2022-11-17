@@ -13,20 +13,42 @@ const TEXT_LAYER_MODE = 0;
 const USE_ONLY_CSS_ZOOM = true;
 
 const PDFViewer = (props: any) => {
-  
-  const { pdfReadBuffer, pdfFileRef, pdfViewerRef } =
-    props;
+
+  const { pdf } = props;
   const pdfRef = useRef<HTMLDivElement>(null);
+  const pdfFileRef = useRef<any>();
+  const pdfViewerRef = useRef<any>();
+  const containerRef = useRef<HTMLDivElement>(null);
   const eventBusRef = useRef<any>(new pdfjsViewer.EventBus());
   const linkServiceRef = useRef<any>();
-  const containerRef = useRef<HTMLDivElement>(null);
   const DEFAULT_SCALE_VALUE = "page-width";
+
   // canvas event
   // useHandleCanvasEvent(props, pdfRef);
 
-  // render pdf
+  // render
+  const initialViewer = async (pdfBuffer: any) => {
+    pdfFileRef.current = pdfjs.getDocument(pdfBuffer).promise;
+    console.log('===pdfFileRef.current===', pdfFileRef.current)
+
+    pdfFileRef.current
+      .then((pdf: any) => {
+        // console.timeEnd(`pdf解析成功：//${pdfUrl}`);
+        if (pdfViewerRef.current) {
+          pdfViewerRef.current.setDocument(pdf);
+          linkServiceRef.current.setDocument(pdf);
+        }
+        return;
+      })
+      .catch((err: any) => {
+        return err;
+      });
+
+  };
+
+
   useEffect(() => {
-    if (pdfReadBuffer) {
+    if (pdf) {
       const linkService = new pdfjsViewer.PDFLinkService({
         eventBus: eventBusRef.current,
       });
@@ -48,30 +70,15 @@ const PDFViewer = (props: any) => {
       eventBusRef.current.on("pagesloaded", function () {
         pdfViewerRef.current.currentScaleValue = DEFAULT_SCALE_VALUE;
       });
-      // render
-      const initialViewer = async (pdfBuffer: any) => {
-        pdfFileRef.current = pdfjs.getDocument(pdfBuffer).promise;
-        pdfFileRef.current
-          .then((pdf: any) => {
-            // console.timeEnd(`pdf解析成功：//${pdfUrl}`);
-            if (pdfViewerRef.current) {
-              pdfViewerRef.current.setDocument(pdf);
-              linkServiceRef.current.setDocument(pdf);
-            }
-            return;
-          })
-          .catch((err: any) => {
-            return err;
-          });
-      };
 
-      initialViewer(pdfReadBuffer);
+
+      initialViewer(pdf);
     }
-  }, [pdfReadBuffer]);
+  }, [pdf]);
 
   return (
-    <PDFViewerCss>
-      <div id="viewerContainer" className="viewerContainer" ref={containerRef}>
+    <PDFViewerCss className="position-relative w-100 h-100">
+      <div className="viewerContainer position-absolute" ref={containerRef}>
         <div id="pdf-list" ref={pdfRef} />
       </div>
     </PDFViewerCss>
