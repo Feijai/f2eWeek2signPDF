@@ -1,9 +1,10 @@
 import {
-    PDF_UPLOAD_ACTION
+    PDF_UPLOAD_ACTION, PDF_EDITING_ACTION
 } from '../constants'
 
 const initialState = {
-    pdf: null
+    pdf: null,
+    editingPdf: null
 }
 
 const PdfReducer = function (state = initialState, action: { type: string, payload: any }) {
@@ -14,7 +15,12 @@ const PdfReducer = function (state = initialState, action: { type: string, paylo
                 pdf: action.payload
             }
         }
-
+        case PDF_EDITING_ACTION: {
+            return {
+                ...state,
+                editingPdf: action.payload
+            }
+        }
         default: {
             return {
                 ...state,

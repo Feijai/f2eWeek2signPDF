@@ -9,10 +9,11 @@ import SignMenu from "./SignMenu";
 interface MenuProps {
   menutype: string;
   pdf: ArrayBuffer | null;
+  choosePdf: Function;
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { menutype, pdf } = props;
+  const { menutype, pdf, choosePdf } = props;
   const [active, setActive] = useState<string | null>(null);
 
   const handleClick = (title: string) => {
@@ -43,7 +44,12 @@ const Menu: React.FC<MenuProps> = (props) => {
             </div>
           </MenuCss>
         ) : (
-          <SignMenu active={active} handleClick={handleClick} pdf={pdf} />
+          <SignMenu
+            active={active}
+            handleClick={handleClick}
+            pdf={pdf}
+            choosePdf={choosePdf}
+          />
         )
       ) : (
         <MenuCss className="h-100 fdc justify-content-between">

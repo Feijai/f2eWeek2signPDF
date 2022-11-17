@@ -17,11 +17,12 @@ margin-top:21px;
     margin-bottom:44px;
   }
   .active {
-    border: 1px solid #f1c343;
+    border: 2px solid #4F61E8;
+    border-radius: 4px;
   }
 
   .canvasWrapper,canvas{
     width:100%!important;
-    height:142px!important;
+    height:100%!important;
   }
 `;
