@@ -27,9 +27,9 @@ const SignPage: React.FC<any> = (props) => {
   const editingPdf = useSelector(
     (state: RootState) => state.pdfReducer.editingPdf
   );
-  console.log("===editingPdf===", editingPdf);
-  console.log(typeof editingPdf)
-  // const pdfRef = useRef<HTMLDivElement>();
+  // console.log("===editingPdf===", editingPdf);
+  // console.log(typeof editingPdf)
+  const pdfRef = useRef<HTMLDivElement>(null);
 
   // render
   const initialViewer = async (pdfBuffer: any) => {
@@ -81,7 +81,7 @@ const SignPage: React.FC<any> = (props) => {
     <SignPageCss className="position-relative w-100 h-100">
       <div className="viewerContainer position-absolute" ref={containerRef}>
         {/* <div className="pdf-list" ref={pdfRef} /> */}
-        {editingPdf}
+        {editingPdf && editingPdf}
       </div>
     </SignPageCss>
   );

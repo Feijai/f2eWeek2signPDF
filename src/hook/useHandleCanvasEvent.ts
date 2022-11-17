@@ -15,6 +15,7 @@ export const useHandleCanvasEvent = (
     function pdfHandledClick(e: any) {
       // 选中canvas元素时，禁止事件冒泡
       const canvas = e.target as any;
+      console.log('==--canvas--==',canvas.parentNode.parentNode)
       if (!canvas || !canvas.getContext) return;
       if (canvas.getAttribute("aria-label")) {
         triggerCanvasLoad((num: number) => ++num);
@@ -27,7 +28,7 @@ export const useHandleCanvasEvent = (
       });
       canvas.parentNode.parentNode.className = "page active";
       // 保存当前画布
-      choosePdf(canvas);
+      choosePdf(canvas.parentNode.parentNode);
     }
 
     $pdf.addEventListener("click", pdfHandledClick);
