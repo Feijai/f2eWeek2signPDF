@@ -2,10 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 // import { useHandleCanvasEvent, IProps } from "../../hook";
 import "pdfjs-dist/web/pdf_viewer.css";
 import { PDFViewerCss } from "./style";
-import { useHandleCanvasEvent } from "../../hook/useHandleCanvasEvent";
+import { useHandleCanvasEvent } from "../../hook/useHandleClickCanvasEvent";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { DEFAULT_SCALE_VALUE,TEXT_LAYER_MODE, USE_ONLY_CSS_ZOOM } from "../../utils/canvasTool";
+import { DEFAULT_SCALE_VALUE, TEXT_LAYER_MODE, USE_ONLY_CSS_ZOOM } from "../../utils/canvasTool";
 
 const pdfjs = require("pdfjs-dist");
 const pdfjsViewer = require("pdfjs-dist/web/pdf_viewer");
@@ -24,15 +24,13 @@ const PDFViewer = (props: any) => {
     (state: RootState) => state.pdfReducer.editingPdf
   );
 
-  const [pdfCanvasNeedLoad, triggerCanvasLoad] = useState(0);
-
   // render
   const initialViewer = async (pdfBuffer: any) => {
     pdfFileRef.current = pdfjs.getDocument(pdfBuffer).promise;
 
     pdfFileRef.current
       .then((pdf: any) => {
-        // console.timeEnd(`pdf解析成功：//${pdfUrl}`);
+        // Object.defineProperty(pdf, 'numPages', { value: Math.min(pdf.numPages, 2) });
         if (pdfViewerRef.current) {
           pdfViewerRef.current.setDocument(pdf);
           linkServiceRef.current.setDocument(pdf);
@@ -45,7 +43,7 @@ const PDFViewer = (props: any) => {
   };
 
   // 點擊canvas 畫布
-  useHandleCanvasEvent(editingPdf, choosePdf, triggerCanvasLoad, pdfRef);
+  useHandleCanvasEvent(editingPdf, choosePdf, pdfRef);
 
   useEffect(() => {
     if (pdf) {
