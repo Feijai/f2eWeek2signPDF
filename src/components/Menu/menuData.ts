@@ -31,12 +31,12 @@ export const menuData = [
 
 
 export const menuData2 = [
-  { title: "文件", icon: icon_gallery, active: icon_gallery_purple },
-  { title: "簽名", icon: icon_sign, active: icon_sign_purple },
-  { title: "圖像", icon: icon_sign_1, active: icon_sign_1_purple },
-  { title: "日期", icon: icon_calendar, active: icon_calendar_purple },
-  { title: "文字", icon: icon_text, active: icon_text },
-  { title: "核取方塊", icon: icon_checkmark, active: icon_checkmark_purple },
-  { title: "選擇鈕", icon: icon_radio, active: icon_radio },
-  { title: "我的檔案", icon: icon_person, active: icon_person_purple },
+  { title: "文件", icon: icon_gallery, active: icon_gallery_purple, },
+  { title: "簽名", icon: icon_sign, active: icon_sign_purple,  },
+  { title: "圖像", icon: icon_sign_1, active: icon_sign_1_purple,  },
+  { title: "日期", icon: icon_calendar, active: icon_calendar_purple, },
+  { title: "文字", icon: icon_text, active: icon_text,  },
+  { title: "核取方塊", icon: icon_checkmark, active: icon_checkmark_purple, },
+  { title: "選擇鈕", icon: icon_radio, active: icon_radio,  },
+  { title: "我的檔案", icon: icon_person, active: icon_person_purple,  },
 ];  

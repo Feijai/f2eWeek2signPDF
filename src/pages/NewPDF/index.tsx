@@ -21,7 +21,7 @@ const NewPDF: React.FC<NewPDFProps> = (props) => {
     setTimeout(() => {
       setNow(100);
       setTimeout(() => {
-        navigate("/signpage");
+        navigate("/signpdfpage");
       }, 500);
     }, 2000);
   };

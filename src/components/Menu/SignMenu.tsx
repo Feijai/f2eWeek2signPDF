@@ -2,6 +2,9 @@ import React from "react";
 import { SignMenuCss } from "./style";
 import { menuData2 } from "./menuData";
 import PDFViewer from "../PDFViewer";
+import SignList from "../SignList";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface SignMenuProps {
   active: string;
@@ -12,11 +15,15 @@ interface SignMenuProps {
 
 const SignMenu: React.FC<SignMenuProps> = (props) => {
   const { active, handleClick, pdf, choosePdf } = props;
+  const signList = useSelector(
+    (state: RootState) => state.signReducer.signList
+  );
+  console.log("===signList===", signList);
   return (
     <SignMenuCss className="d-flex">
       <div className="icons fdc">
         {menuData2.map((ele, idx) => (
-          <button key={idx} onClick={() => handleClick(ele.title)}>
+          <button onClick={() => handleClick(ele.title)}>
             {active === ele.title ? (
               <img src={ele.active} alt="" className="icon" />
             ) : (
@@ -26,8 +33,22 @@ const SignMenu: React.FC<SignMenuProps> = (props) => {
         ))}
       </div>
       <div className="func">
-        <p className="text text-center">文件</p>
-        <PDFViewer pdf={pdf} choosePdf={choosePdf} />
+        {active === "文件" && (
+          <>
+            <p className="text text-center">{active}</p>
+            <PDFViewer pdf={pdf} choosePdf={choosePdf} />
+          </>
+        )}
+        {active === "簽名" && (
+          <>
+            <p className="text text-center">{active}</p>
+            <SignList />
+            {signList.length &&
+              signList.map((ele, idx) => (
+                <img src={ele} alt="" className="" key={idx} />
+              ))}
+          </>
+        )}
       </div>
     </SignMenuCss>
   );

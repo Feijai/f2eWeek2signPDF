@@ -22,7 +22,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 
   return (
     <>
-      {menutype === "/signpage" ? (
+      {menutype !== "/" ? (
         active === null ? (
           <MenuCss className="h-100 fdc justify-content-between">
             <div className="topBtn fdc">

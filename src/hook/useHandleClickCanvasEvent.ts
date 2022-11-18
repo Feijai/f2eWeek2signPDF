@@ -21,8 +21,9 @@ export const useHandleCanvasEvent = (
         ele.className = "page";
       });
       canvas.parentNode.parentNode.className = "page active";
+      
       // 儲存頁面
-      choosePdf(canvas.parentNode.parentNode.getAttribute("data-page-number"));
+      choosePdf(canvas.toDataURL());
     }
 
     $pdf.addEventListener("click", pdfHandledClick);

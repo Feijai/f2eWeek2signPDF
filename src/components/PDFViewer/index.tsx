@@ -74,7 +74,7 @@ const PDFViewer = (props: any) => {
   }, [pdf]);
 
   return (
-    <PDFViewerCss className="position-relative w-100 h-100">
+    <PDFViewerCss className="position-relative w-100">
       <div
         className="viewerContainer position-absolute w-100"
         ref={containerRef}
