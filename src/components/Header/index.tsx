@@ -12,10 +12,11 @@ interface Header {
   menutype: string;
   state: boolean;
   open: Function;
+  pdfDownload: Function
 }
 
 const Header: React.FC<Header> = (props) => {
-  const { state, open, menutype } = props;
+  const { state, open, menutype, pdfDownload } = props;
   return (
     <HeaderCss className="d-flex justify-content-between">
       <div className="d-flex align-items-center">
@@ -36,14 +37,12 @@ const Header: React.FC<Header> = (props) => {
         </Link>
       </div>
       <div>
-        {menutype === "/" && (
+        {menutype === "/" ? (
           <>
             <img src={search} alt="" />
             <img src={bellIn} alt="" className="bell" />
           </>
-        )}
-
-        <button className="save text-white">儲存</button>
+        ) : <button className="save text-white" onClick={() => { pdfDownload() }}>download</button>}
         <img src={user} alt="" className="user" />
       </div>
     </HeaderCss>

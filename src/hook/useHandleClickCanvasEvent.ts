@@ -22,7 +22,7 @@ export const useHandleCanvasEvent = (
       });
       canvas.parentNode.parentNode.className = "page active";
       
-      // 儲存頁面
+      // 顯示頁面
       choosePdf(canvas.toDataURL());
     }
 

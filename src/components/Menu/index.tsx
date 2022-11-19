@@ -10,10 +10,11 @@ interface MenuProps {
   menutype: string;
   pdf: ArrayBuffer | null;
   choosePdf: Function;
+  chooseSign: Function;
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
-  const { menutype, pdf, choosePdf } = props;
+  const { menutype, pdf, choosePdf, chooseSign } = props;
   const [active, setActive] = useState<string | null>(null);
 
   const handleClick = (title: string) => {
@@ -49,6 +50,7 @@ const Menu: React.FC<MenuProps> = (props) => {
             handleClick={handleClick}
             pdf={pdf}
             choosePdf={choosePdf}
+            chooseSign={chooseSign}
           />
         )
       ) : (

@@ -1,4 +1,4 @@
-import { SIGN_SAVE_ACTION } from '../constants'
+import { SIGN_SAVE_ACTION,SIGN_CHOOSE_ACTION } from '../constants'
 
 interface SaveSignAction {
     type: string
@@ -9,3 +9,11 @@ export const clickSaveSignAction = (payload: string) =>
     (dispatch: (arg: SaveSignAction) => (SaveSignAction)) => {
         dispatch({ type: SIGN_SAVE_ACTION, payload: payload })
     }
+
+
+    
+export const chooseSignAction = (payload: string) =>
+(dispatch: (arg: SaveSignAction) => (SaveSignAction)) => {
+    dispatch({ type: SIGN_CHOOSE_ACTION, payload: payload })
+}
+

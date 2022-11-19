@@ -8,19 +8,14 @@ interface SignPageProps {
 
 const SignPage: React.FC<SignPageProps> = ({ saveSign }) => {
   const canvasRef = useRef<any>(null);
-  const clearRef = useRef<any>(null);
+  const clearRef = useRef<HTMLButtonElement>(null);
   let isPainting = false;
-
-  const getContext = (): CanvasRenderingContext2D => {
-    const canvas: any = canvasRef.current;
-
-    return canvas.getContext("2d");
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const clear = clearRef.current;
-    const ctx: CanvasRenderingContext2D = getContext();
+
+    const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
     // 設定線條的相關數值
     ctx.lineWidth = 4;
     ctx.lineCap = "round";
@@ -90,7 +85,7 @@ const SignPage: React.FC<SignPageProps> = ({ saveSign }) => {
       canvas.addEventListener("touchmove", draw);
     }
 
-    clear.addEventListener("click", reset);
+    clear?.addEventListener("click", reset);
   });
 
   return (
@@ -113,6 +108,8 @@ const SignPage: React.FC<SignPageProps> = ({ saveSign }) => {
           className="save text-white"
           onClick={() => {
             saveSign(canvasRef.current.toDataURL());
+            const canvas = canvasRef.current
+            canvas.getContext("2d").clearRect(0, 0, canvas?.width, canvas?.height)
           }}
         >
           save

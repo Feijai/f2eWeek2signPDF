@@ -62,6 +62,7 @@ background: linear-gradient(#4FCAA0, #6E7EE5);
     top:100px;
     left:137px;
 }
+
 `
 
 export const SignMenuCss = styled.div`

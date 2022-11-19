@@ -3,8 +3,8 @@ import Header from "./components/Header";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { clickMenuButtonAction } from "./redux/actions/MenuActions";
-import { pdfUploadAction, pdfChooseAction } from "./redux/actions/PdfActions";
-import { clickSaveSignAction } from "./redux/actions/SignActions";
+import { pdfUploadAction, pdfChooseAction, pdfDownloadAction } from "./redux/actions/PdfActions";
+import { clickSaveSignAction, chooseSignAction } from "./redux/actions/SignActions";
 import Menu from "./components/Menu";
 import Home from "./pages/Home";
 import NewPDF from "./pages/NewPDF";
@@ -21,20 +21,22 @@ const App: React.FC<any> = (props) => {
     editingPdf,
     choosePdf,
     saveSign,
+    chooseSign,
+    pdfDownload
   } = props;
   const location = useLocation();
 
   return (
     <>
-      <Header open={getMenu} state={menuState} menutype={location.pathname} />
+      <Header open={getMenu} state={menuState} menutype={location.pathname} pdfDownload={pdfDownload} />
       <div className="d-flex midHiegh">
         {menuState && (
-          <Menu menutype={location.pathname} pdf={pdf} choosePdf={choosePdf} />
+          <Menu menutype={location.pathname} pdf={pdf} choosePdf={choosePdf} chooseSign={chooseSign} />
         )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/newpdf" element={<NewPDF uploadPdf={uploadPdf} />} />
-          <Route path="/signpdfpage" element={<SignPDFPage pdf={pdf} />} />
+          <Route path="/signpdfpage" element={<SignPDFPage pdf={pdf} pdfDownload={pdfDownload} />} />
           <Route path="/signpage" element={<SignPage saveSign={saveSign} />} />
         </Routes>
       </div>
@@ -54,4 +56,6 @@ export default connect(mapStateToProps, {
   uploadPdf: pdfUploadAction,
   choosePdf: pdfChooseAction,
   saveSign: clickSaveSignAction,
+  chooseSign: chooseSignAction,
+  pdfDownload: pdfDownloadAction
 })(App);

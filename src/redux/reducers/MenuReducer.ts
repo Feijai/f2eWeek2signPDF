@@ -2,7 +2,7 @@ import {
     MENU_ACTION
 } from '../constants'
 const initialState = {
-    menuState: false,
+    menuState: true,
 }
 
 const MenuReducer = function (state = initialState, action: { type: string }) {

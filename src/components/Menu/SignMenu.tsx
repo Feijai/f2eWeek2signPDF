@@ -11,19 +11,20 @@ interface SignMenuProps {
   handleClick: Function;
   pdf: ArrayBuffer | null;
   choosePdf: Function;
+  chooseSign: Function;
 }
 
 const SignMenu: React.FC<SignMenuProps> = (props) => {
-  const { active, handleClick, pdf, choosePdf } = props;
+  const { active, handleClick, pdf, choosePdf, chooseSign } = props;
   const signList = useSelector(
     (state: RootState) => state.signReducer.signList
   );
-  console.log("===signList===", signList);
+
   return (
     <SignMenuCss className="d-flex">
       <div className="icons fdc">
         {menuData2.map((ele, idx) => (
-          <button onClick={() => handleClick(ele.title)}>
+          <button onClick={() => handleClick(ele.title)} key={idx}>
             {active === ele.title ? (
               <img src={ele.active} alt="" className="icon" />
             ) : (
@@ -42,11 +43,7 @@ const SignMenu: React.FC<SignMenuProps> = (props) => {
         {active === "簽名" && (
           <>
             <p className="text text-center">{active}</p>
-            <SignList />
-            {signList.length &&
-              signList.map((ele, idx) => (
-                <img src={ele} alt="" className="" key={idx} />
-              ))}
+            <SignList signList={signList} chooseSign={chooseSign} />
           </>
         )}
       </div>

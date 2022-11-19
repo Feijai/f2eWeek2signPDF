@@ -16,10 +16,6 @@ margin-top:21px;
     height:142px!important;
     margin-bottom:44px;
   }
-  .active {
-    border: 2px solid #4F61E8;
-    border-radius: 4px;
-  }
 
   .canvasWrapper,canvas{
     width:100%!important;
